@@ -14,4 +14,6 @@ public enum UslugiFryzjera {
     public int getKoszt() {
         return koszt;
     }
+
+
 }
