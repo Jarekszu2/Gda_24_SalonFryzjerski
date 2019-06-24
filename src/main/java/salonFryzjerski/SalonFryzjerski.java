@@ -25,7 +25,7 @@ public class SalonFryzjerski {
         Collection<Map.Entry<Klient, Wizyta>> entries = mapaWizytOczekujacych.entrySet();
         List<Integer> integerList = new ArrayList<>();
         for (Map.Entry<Klient, Wizyta> entry : entries) {
-            if (entry.getValue().getTerminWizyty() == wizyta.getTerminWizyty()) {
+            if (entry.getValue().getTerminWizyty().equals(wizyta.getTerminWizyty())) {
                 integerList.add(1);
             } else {
                 integerList.add(0);
