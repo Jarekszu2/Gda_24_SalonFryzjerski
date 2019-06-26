@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -90,6 +91,35 @@ public class SalonFryzjerski2 {
                     listaWizytOczekujacych.remove(i);
                     i--;
                     System.out.println("Wizyta anulowana.");
+                }
+            }
+        }
+    }
+
+    public void listaUslugFryzjera() {
+        UslugiFryzjera[] uslugiFryzjera = UslugiFryzjera.values();
+        for (int i = 0; i < uslugiFryzjera.length; i++) {
+            System.out.println((i + 1) + ". " + uslugiFryzjera[i].name());
+        }
+    }
+
+    public void czyWizytaAktualna(String name, LocalDateTime termin) {
+        if (sprawdzenieCzyJestNaLiscieOczekujacych(name, termin)) {
+            System.out.println("Wizyta aktualna");
+        } else {
+            List<UslugiSalonu> listaKlienta = new ArrayList<>();
+            for (int i = 0; i < listaWizytOczekujacych.size(); i++) {
+                if (listaWizytOczekujacych.get(i).getKlient().getImie().equalsIgnoreCase(name)) {
+                    listaKlienta.add(listaWizytOczekujacych.get(i));
+                }
+            }
+
+            if (listaKlienta.size() == 0) {
+                System.out.println("Klient " + name + " nie ma umówionych wizyt.");
+            } else {
+                System.out.println("Umówione terminy wizyt:");
+                for (int i = 0; i < listaKlienta.size(); i++) {
+                    System.out.println((i + 1) + ". " + listaKlienta.get(i).getWizyta().getTerminWizyty());
                 }
             }
         }

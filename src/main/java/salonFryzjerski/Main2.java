@@ -33,13 +33,14 @@ public class Main2 {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("Podaj komendę:\na: dodaj wizytę\nb: listuj wizyty oczekujące\nc: realizacja wizyty" +
-                "\nd: listuj wizyty zrealizowane\n e: anulowanie wizyty\nf: listuj wizyty anulowane\n\nw: wyjście");
+                "\nd: listuj wizyty zrealizowane\ne: anulowanie wizyty\nf: listuj wizyty anulowane" +
+                "\ng: lista usług fruzjerskich\nh: sprawdzenie czy wizyta aktualna\n\nw: wyjście");
         char znak = 'a';
         boolean flag = false;
         do {
             System.out.println();
             System.out.println("Wybierz: a(dodaj wizytę), b(listuj oczekujące), c(realizacja), d(listuj zrealizowane), e(anulowanie)," +
-                    "\n         f(listuj anulowane) lub w(wyjście).");
+                    "\n         f(listuj anulowane), g(lista usług), h(aktualna?) lub w(wyjście).");
             znak = scanner.next().charAt(0);
             switch (znak) {
                 case 'a':
@@ -112,6 +113,19 @@ public class Main2 {
                 case 'f':
                     System.out.println("Usługi anulowane:");
                     salonFryzjerski2.listujListeUslugiSalonu(listaWizytAnulowanych);
+                    break;
+                case 'g':
+                    System.out.println("Lista usług fryzjerskich:");
+                    System.out.println();
+                    salonFryzjerski2.listaUslugFryzjera();
+                    break;
+                case 'h':
+                    System.out.println("Sprawdzenie, czy wizyta jest aktualna.");
+                    System.out.println();
+                    System.out.println("Podaj imię:");
+                    String nameH = scanner.next();
+                    LocalDateTime localDateTimeH = getLocalDateTime(scanner);
+                    salonFryzjerski2.czyWizytaAktualna(nameH, localDateTimeH);
                     break;
                 case 'w':
                     flag = true;
